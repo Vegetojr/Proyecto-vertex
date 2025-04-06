@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Página de Facturas{% endblock %}
+
+{% block content %}
+    <h1>Página de Facturas</h1>
+    
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Procesar Facturas">
+        <input type="submit" name="clear_table" value="Limpiar Tabla">
+    </form>
+
+        <h2>Resultados del Procesamiento:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Archivo</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                    <tr>
+                        <td>{{ row.file_path }}</td>
+                        <td>{{ row.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

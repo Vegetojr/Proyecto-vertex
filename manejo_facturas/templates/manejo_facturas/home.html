@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- templates/manejo_facturas/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Página de Inicio{% endblock %}
+
+{% block content %}
+    <h1>Página de Inicio</h1>
+
+    <div class="button-container">
+        <a href="{% url 'facturas' %}"><input type="submit" value="Facturas"></a>
+        <a href="{% url 'pedimentos' %}"><input type="submit" value="Pedimentos"></a>
+        <a href="{% url 'transferencias' %}"><input type="submit" value="Transferencias"></a>
+    </div>
+{% endblock %}

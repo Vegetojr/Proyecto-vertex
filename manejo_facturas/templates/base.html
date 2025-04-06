@@ -1,0 +1,118 @@
+<!-- templates/manejo_facturas/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Aplicación{% endblock %}</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Fondo gris claro */
+            color: #333; /* Texto gris oscuro */
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Para posicionar el enlace "Volver al inicio" */
+            text-align: center; /* Centrar el contenido dentro del contenedor */
+        }
+
+        /* Encabezado */
+        h1 {
+            color: #673ab7; /* Morado */
+            text-align: center;
+        }
+
+        /* Enlace "Volver al inicio" */
+        .back-to-home {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #3f51b5; /* Azul */
+            text-decoration: none;
+            font-weight: bold; /* Hace el enlace más notable */
+            font-size: 1.2em; /* Aumenta el tamaño de la fuente */
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .back-to-home:hover {
+            text-decoration: underline;
+        }
+
+        /* Contenedor para los botones centrados */
+        .button-container {
+            text-align: center; /* Centrar los botones horizontalmente */
+        }
+
+        /* Enlaces (Botones) */
+        .button-container a { /* Aplica estilos solo a los enlaces dentro del contenedor */
+            color: #3f51b5; /* Azul */
+            text-decoration: none;
+            display: inline-block; /* Permite aplicar ancho y alto */
+            margin: 10px; /* Espacio entre los botones */
+        }
+
+        .button-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Botones */
+        input[type="submit"] {
+            background-color: #3f51b5; /* Azul */
+            color: white;
+            padding: 15px 30px; /* Aumentar el padding para hacer el botón más grande */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em; /* Aumentar el tamaño de la fuente */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #673ab7; /* Morado */
+        }
+
+        /* Tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3f51b5; /* Azul */
+            color: white;
+        }
+
+        /* Mensajes de error */
+        .error-message {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="back-to-home">Volver al inicio</a>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
