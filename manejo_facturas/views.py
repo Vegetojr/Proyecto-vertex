@@ -23,8 +23,24 @@ def facturas_view(request):
                 # se hace una lista de diccionarios
                 new_table_data = []
                 for file_path, status in results.items():
+                    print(status)
+                    try:
+                        checkStatus = status.get('Status')
+                        if checkStatus:
+                            innerStatus = 'Procesado con exito'
+
+                        else:
+                            error = status.get('Errores')
+                            mensajeError = error.get('mensajeError')
+                            if not mensajeError:  # Si el mensaje de error llega a ser solo un string de "" pasa esto
+                                mensajeError = 'Es probable que la factura tenga un error'
+                            innerStatus = (
+                                "Procesado\nPrecaucion: " + mensajeError)
+                    except AttributeError as e:
+                        innerStatus = ('ERROR: '+status.get('ERROR'))
+
                     new_table_data.append(
-                        {'file_path': file_path, 'status': status})
+                        {'file_path': file_path, 'status': innerStatus})
 
                 # junto ambas tabals
                 updated_table_data = existing_table_data + new_table_data

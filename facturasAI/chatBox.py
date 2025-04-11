@@ -54,7 +54,7 @@ def cleanResponse(responseString):
 
     except ValueError:
         print("Error a la hora de convertir el Json")
-        return None, None
+        return {"ERROR": 'HUBO UN PROBLEMA AL MANEJAR LA INFORMACION'}
 
     products = []
     for line in cvsString:
@@ -73,7 +73,7 @@ def process_file(file_path, model):
         if not nameCompany:
             print(f"No se encontro el nombre de la empresa en: {file_path}")
             conn.close()
-            return 'ERROR'
+            return {"ERROR": 'NO SE ENCUENTRA EL NOMBRE DE LA EMPRESA'}
 
         pdfFile = retrievePDF(file_path)
         cursor.execute(
@@ -96,7 +96,7 @@ def process_file(file_path, model):
             except sqlite3.IntegrityError as e:
                 print("Error al crear el prompt")
                 conn.close()
-                return 'ERROR'
+                return {"ERROR": 'EL MODELO DE INTELIJENCIA ARTIFICIAL NO RESPONDE'}
         else:
             promptToUse = promptToUse[0]
 
@@ -106,19 +106,19 @@ def process_file(file_path, model):
         if None in [jsonDict, poductCVS]:
             print("hubo un error con JSON o CVS")
             conn.close()
-            return 'ERROR'
+            return {"ERROR": 'NO SE PUDO CARGAR LA INFORMACION'}
 
-        manejoBaseDatos.addInvoiceToDataBase(
+        status = manejoBaseDatos.addInvoiceToDataBase(
             nameCompany, jsonDict, poductCVS, conn, cursor)
         conn.close()
         print(f"Archivo {file_path} procesado con éxito.")
-        return 'PROCESADO'
+        return status
 
     except Exception as e:
         print(f"Error al procesar {file_path}: {e}")
         if 'conn' in locals():
             conn.close()
-        return 'ERROR'
+        return {"ERROR": 'HUBO UN ERROR AL PROCESAR EL ARCHIVO'}
 
 
 def main():

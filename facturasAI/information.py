@@ -12,6 +12,7 @@ BaseJSON = '''
       "pais":,
       "codigoPostal":
     },
+    "subTotal":,
     "total":
     }
 '''
@@ -31,7 +32,7 @@ PromptToGeneratePrompts = f"""
   **Csv Format**
   {BaseCSV}
   
-  Return te prompt of the indications to how to find each information of he can put it on the JSON and CSV, dont add specific information of this JSON because REMEBER this its the tample , i will pass you a lot of these files so give details of how to find these information in the prompt.
+  Return te prompt of the indications to how to find each information so he can put it on the JSON and CSV, dont add specific information of this JSON because REMEBER this its the tample , i will pass you a lot of these files so give details of how to find these information in the prompt.
   And at the end of the prompt add the empty json and CSV format so he can know what json and csv format he needs to return.
 
   The CSV its only for the products because its vey often that there are a lot of products so its for optimization, the rest put it on a JSON.
@@ -88,3 +89,12 @@ TERMINOS_EMPRESA_EN = [
     r"Center",
     r"LAMINATING",
 ]
+
+statusEscaneoFactura = {
+    "Status":True, #True todo bien False hay un error
+    "Errores":{
+        "precioAcumulativo":[],#Lista con el ID o Nombre de los productos que hay algun error
+        "total":True, #True todo bien False hay un error
+        "mensajeError":"" #Mostrara solo mensaje cuando el total sea mal
+    }
+}

@@ -18,6 +18,8 @@ def initialize_database(db_name:str):
             idShipTo INTEGER,
             fechaEmision TEXT,
             shipDate TEXT,
+            subTotal FLOAT,
+            total FLOAT,
             FOREIGN KEY (idShipTo) REFERENCES informacionDirecciones(id),
             FOREIGN KEY (idEmpresa) REFERENCES Empresas(id)
         )
